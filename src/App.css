@@ -5,11 +5,16 @@
 
 form {
   margin: 0 auto;
+  margin-top: 200px;
   width: 600px;
   padding: 1em;
   border: 1px solid rgb(255, 189, 211);
   border-radius: 1em;
+  padding-top: 30px;
 
+}
+.formulario{
+  margin-left: 310px;
 }
 
 form div+div {
@@ -62,3 +67,4 @@ button {
 .formulario{
   width: 1200px;
 }
+

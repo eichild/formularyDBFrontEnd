@@ -54,7 +54,7 @@ function Consulta() {
                     })}
 
                 </tbody>
-
+                <Link to={"/"}><button>Voltar</button></Link>
             </Table>
         </div>
     );

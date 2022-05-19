@@ -15,9 +15,11 @@ const validationPost = yup.object().shape({
 })
 
 function App() {
+ 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(validationPost)
   })
+
   const [banco, setBanco] = useState([]);
   const [tipo, setTipo] = useState([]);
 
@@ -28,21 +30,14 @@ function App() {
       })
   }, [])
 
-  useEffect(() => {
-    axios.get("http://localhost:8080/api/banco-de-dados")
-      .then((response) => {
-        setBanco(response.data)
-      })
-  }, [])
-
-
   const onSubmit = data => axios.post("http://localhost:8080/api/banco-de-dados", data)
     .then(() => {
       console.log(data)
     })
     .catch(error => console.log("Não foi possível cadastrar credenciais de banco de dados: " + error))
 
-  return (
+
+return (
     <div>
       <main>
         <div className='formulario'>
@@ -55,16 +50,20 @@ function App() {
               />
               <p className='error-message'>{errors.servidor?.message}</p>
             </div>
-
             <div>
               <label>Tipo :</label>
-              <select className="tipo" name='tipo' {...register("tipo")}
-                value={tipo.id_tipo && tipo.tipo}
-                onChange={(e) => setBanco(e.target.value)}
+              <select className="tipo" name='id_tipo'{...register("tipo")}
+               value={tipo.id_tipo}
+               onChange={(e) => setBanco(e.event.value)}
               >
+                <option value='' className='option-select'>--Selecione o Tipo de Banco de Dados--</option>
                 {tipo.map((tipo, key) => {
                   return (
-                    <option key={key.id_tipo} value={tipo.id_tipo}>{tipo.tipo}</option>
+                    <option key={key.id_tipo} value={tipo.id_tipo}>
+                      {tipo.id_tipo}
+                      
+                    </option>
+                    
                   )
                 })}
               </select>
