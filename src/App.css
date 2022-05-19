@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  margin: 0 auto;
+  width: 600px;
+  padding: 1em;
+  border: 1px solid rgb(255, 189, 211);
+  border-radius: 1em;
+
+}
+
+form div+div {
+  margin-top: 1em;
+}
+
+label {
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+  padding-right: 30px;
+}
+
+input,
+textarea,
+select {
+  font: 1em sans-serif;
+  width: 340px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #000;
+}
+
+textarea {
+  vertical-align: top;
+  height: 5em;
+  resize: vertical;
+}
+
+button {
+  width: 100px;
+  height: 30px ;
+  border-radius: 10%;
+  border: 1px;
+  text-align: center;
+  
+}
+.botoes{
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 21px;
+}
+.formulario{
+  width: 1200px;
+}
