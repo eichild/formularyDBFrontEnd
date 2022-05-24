@@ -20,6 +20,7 @@ function Edit() {
   const { id_banco } = useParams();
   const [banco, setBanco] = useState([]);
   const [tipo, setTipo] = useState([]);
+
   const history = useNavigate();
 
 
@@ -27,6 +28,7 @@ function Edit() {
     axios.get(`http://localhost:8080/api/banco-de-dados/${id_banco}`)
       .then((response) => {
         reset(response.data)
+        console.log(response.data)
       })
   }, [])
 
@@ -34,16 +36,21 @@ function Edit() {
     axios.get("http://localhost:8080/api/banco-de-dados")
       .then((response) => {
         setBanco(response.data)
-        
+
       })
   }, [])
-
+  
   const onSubmit = data => axios.put(`http://localhost:8080/api/banco-de-dados/${id_banco}`, data)
-    .then(() => {
-      history("/consulta")
+    .then((response) => {
+      // history("/consulta")
+      console.log(response.data)
     })
     .catch(error => console.log("Não foi possível atualizar as credenciais de banco de dados: " + error))
 
+      // const handleInputChange = (e) => {
+      //   const banco = e.banco
+      //   setBanco(banco)
+      // }
   return (
     <div>
       <main>
@@ -57,34 +64,46 @@ function Edit() {
 
           <div>
             <label>Tipo :</label>
+            <select className="tipo"
+              name='id_tipo' 
+              value={banco.id_tipo}
+              onChange={(e) => setBanco(e.event.value)}>
+                {
+                  banco.map((banco, key) =>{
+                    return(
+                      <option 
+                      key={banco.tipoBanco.id_tipo} 
+                      value={banco.tipoBanco.id_tipo}>
+                        {banco.tipoBanco.id_tipo}
+                      </option>
+                    )
+                  })
+                }
+            </select>
+          </div>
+          
+          <div>
+            <label>Usuario:</label>
+            <input type="text" name="usuario" {...register("usuario")}
 
-            <input className="tipo" name='tipo' {...register("tipo")}>
-              
-          </input>
-        </div>
+            />
+            <p className='error-message'>{errors.usuario?.message}</p>
+          </div>
 
-        <div>
-          <label>Usuario:</label>
-          <input type="text" name="usuario" {...register("usuario")}
+          <div>
+            <label>Senha:</label>
+            <input type="text" name="senha" {...register("senha")}
 
-          />
-          <p className='error-message'>{errors.usuario?.message}</p>
-        </div>
+            />
+            <p className='error-message'>{errors.senha?.message}</p>
+          </div>
 
-        <div>
-          <label>Senha:</label>
-          <input type="text" name="senha" {...register("senha")}
-
-          />
-          <p className='error-message'>{errors.senha?.message}</p>
-        </div>
-
-        <div className="botoes">
-          <button type='submit'>Alterar</button>
-          < Link to="/consulta"><button>Voltar</button></Link>
-        </div>
-      </form>
-    </main>
+          <div className="botoes">
+            <button type='submit'>Alterar</button>
+            < Link to="/consulta"><button>Voltar</button></Link>
+          </div>
+        </form>
+      </main>
     </div >
 
   );

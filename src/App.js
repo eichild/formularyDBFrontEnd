@@ -15,7 +15,7 @@ const validationPost = yup.object().shape({
 })
 
 function App() {
- 
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(validationPost)
   })
@@ -37,7 +37,7 @@ function App() {
     .catch(error => console.log("Não foi possível cadastrar credenciais de banco de dados: " + error))
 
 
-return (
+  return (
     <div>
       <main>
         <div className='formulario'>
@@ -52,18 +52,19 @@ return (
             </div>
             <div>
               <label>Tipo :</label>
-              <select className="tipo" name='id_tipo'{...register("tipo")}
-               value={tipo.id_tipo}
-               onChange={(e) => setBanco(e.event.value)}
+              <select className="tipo"
+                name='id_tipo' {...register("tipo")}
+                value={tipo.id_tipo}
+                onChange={(e) => setBanco(e.event.value)}
               >
                 <option value='' className='option-select'>--Selecione o Tipo de Banco de Dados--</option>
                 {tipo.map((tipo, key) => {
                   return (
                     <option key={key.id_tipo} value={tipo.id_tipo}>
-                      {tipo.id_tipo}
-                      
+                      {tipo.tipo}
+
                     </option>
-                    
+
                   )
                 })}
               </select>

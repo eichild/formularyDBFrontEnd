@@ -14,7 +14,8 @@ form {
 
 }
 .formulario{
-  margin-left: 310px;
+  width: 600;
+  padding-left: 250px;
 }
 
 form div+div {

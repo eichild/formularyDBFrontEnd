@@ -11,6 +11,7 @@ function Consulta() {
     const [banco, setBanco] = useState([])
 
 
+
     useEffect(() => {
         axios.get("http://localhost:8080/api/banco-de-dados")
             .then((response) => {
@@ -35,6 +36,7 @@ function Consulta() {
                         <th>TIPO</th>
                         <th>USUARIO</th>
                         <th>SENHA</th>
+                        <th>AÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>
