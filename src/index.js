@@ -2,9 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import App from './App';
-import Consulta from './Consulta';
-import Edit from './Editar';
+import App from './pages/App';
+import Consulta from './pages/Consulta';
+import Edit from './pages/Editar';
 
 ReactDOM.render(
   <React.StrictMode>

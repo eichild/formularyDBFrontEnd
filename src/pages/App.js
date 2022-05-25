@@ -1,4 +1,4 @@
-import './App.css';
+import '../App.css';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
@@ -64,9 +64,7 @@ function App() {
               >
                 <option value='' className='option-select'>--Selecione o Tipo de Banco de Dados--</option>
                 <option value="Oracle" name="">Oracle</option>
-                <option value="SQL Server">SQL Server</option>
-                <option value="MongoDB">MongoDB</option>
-               
+                <option value="SQL Server">SQL Server</option>               
               </select>
               {/* <p className='error-message'>{errors.servidor?.message}</p>*/}
             </div>
