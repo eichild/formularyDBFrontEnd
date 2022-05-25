@@ -45,7 +45,7 @@ function Consulta() {
                             <tr key={key}>
                                 <td>{banco.id_banco}</td>
                                 <td>{banco.servidor}</td>
-                                <td>{banco.tipoBanco.tipo}</td>
+                                <td>{banco.tipo_banco}</td>
                                 <td>{banco.usuario}</td>
                                 <td>{banco.senha}</td>
                                 <Link to={{pathname: `/editar/${banco.id_banco}`}}><button variant="primary">Editar</button></Link>

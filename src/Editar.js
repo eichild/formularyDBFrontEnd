@@ -65,20 +65,10 @@ function Edit() {
           <div>
             <label>Tipo :</label>
             <select className="tipo"
-              name='id_tipo' 
-              value={banco.id_tipo}
-              onChange={(e) => setBanco(e.event.value)}>
-                {
-                  banco.map((banco, key) =>{
-                    return(
-                      <option 
-                      key={banco.tipoBanco.id_tipo} 
-                      value={banco.tipoBanco.id_tipo}>
-                        {banco.tipoBanco.id_tipo}
-                      </option>
-                    )
-                  })
-                }
+              name='tipo_banco' 
+              value=""
+              onChange={(e) => setBanco(e)}>
+               
             </select>
           </div>
           
