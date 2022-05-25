@@ -10,7 +10,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 const validationPost = yup.object().shape({
   servidor: yup.string().required("O servidor é obrigatório"),
   usuario: yup.string().required("O usuario é obrigatório"),
-  senha: yup.string().required("A senha é obrigatório")
+  senha: yup.string().required("A senha é obrigatório"),
+  tipo_banco: yup.string().required("o Tipo de Banco é obrigatório"),
 })
 
 function Edit() {
@@ -39,7 +40,7 @@ function Edit() {
 
       })
   }, [])
-  
+
   const onSubmit = data => axios.put(`http://localhost:8080/api/banco-de-dados/${id_banco}`, data)
     .then((response) => {
       // history("/consulta")
@@ -47,10 +48,10 @@ function Edit() {
     })
     .catch(error => console.log("Não foi possível atualizar as credenciais de banco de dados: " + error))
 
-      // const handleInputChange = (e) => {
-      //   const banco = e.banco
-      //   setBanco(banco)
-      // }
+  // const handleInputChange = (e) => {
+  //   const banco = e.banco
+  //   setBanco(banco)
+  // }
   return (
     <div>
       <main>
@@ -64,14 +65,18 @@ function Edit() {
 
           <div>
             <label>Tipo :</label>
-            <select className="tipo"
-              name='tipo_banco' 
-              value=""
-              onChange={(e) => setBanco(e)}>
-               
+            <select type="tipo" name="tipo_banco"
+              {...register("tipo_banco")}
+            >
+              {/* <option value='' className='option-select'>--Selecione o Tipo de Banco de Dados--</option> */}
+              <option value="Oracle" name="">Oracle</option>
+              <option value="SQL Server">SQL Server</option>
+
             </select>
+            <p className='error-message'>{errors.servidor?.message}</p>
           </div>
-          
+
+
           <div>
             <label>Usuario:</label>
             <input type="text" name="usuario" {...register("usuario")}
