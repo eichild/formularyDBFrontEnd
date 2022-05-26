@@ -16,7 +16,6 @@ function Consulta() {
             })
     }, [])
 
-
     function deleteBanco(id_banco) {
         axios.delete('http://localhost:8080/api/banco-de-dados/' + id_banco)
         setBanco(banco.filter(banco => banco.id_banco !== id_banco))
@@ -44,14 +43,18 @@ function Consulta() {
                                 <td>{banco.tipo_banco}</td>
                                 <td>{banco.usuario}</td>
                                 <td>{banco.senha}</td>
-                                <Link to={{ pathname: `/editar/${banco.id_banco}` }}><button variant="primary">Editar</button></Link>
-                                <button variant="danger" onClick={() => deleteBanco(banco.id_banco)}>Deletar</button>
+                                <div className='acoes'>
+                                    <Link to={{ pathname: `/editar/${banco.id_banco}` }}><button className='buttonEditar'>Editar</button></Link>
+                                    <button className='buttonDeletar' onClick={() => deleteBanco(banco.id_banco)}>Deletar</button>
+                                </div>
                             </tr>
                         )
                     })}
                 </tbody>
-                <Link to={"/"}><button>Voltar</button></Link>
             </Table>
+            <div className='div_voltar'>
+                <Link to={"/"}><button className='button'>Voltar</button></Link>
+            </div>
         </div>
     );
 }

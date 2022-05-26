@@ -8,14 +8,16 @@ form {
   margin-top: 200px;
   width: 600px;
   padding: 1em;
-  border: 1px solid rgb(255, 189, 211);
+  border: 1px solid #660000;
   border-radius: 1em;
   padding-top: 30px;
 
 }
-.formulario{
-  width: 600;
-  padding-left: 250px;
+
+.formulario {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
 }
 
 form div+div {
@@ -36,7 +38,7 @@ select {
   width: 340px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid #999;
+  border: 1px solid #52566c;
   border-radius: 3px;
 }
 
@@ -53,19 +55,45 @@ textarea {
 
 button {
   width: 100px;
-  height: 30px ;
-  border-radius: 10%;
-  border: 1px;
+  height: 30px;
+  border: 2px solid #585b58;
   text-align: center;
-  
+  border-radius: 3px !important;
+  text-decoration: none;
+  background-color: white;
+  transition-duration: 0.4s;
 }
-.botoes{
+.button:hover{
+  background-color: #52566c;
+  color: white;
+}
+.buttonEditar:hover{
+  background-color: #090e2d ;
+  color: white;
+}
+.buttonDeletar:hover{
+  background-color: red;
+  color: white;
+}
+.buttonDeletar{
+  margin-left: 10px;
+}
+.botoes {
   width: 500px;
   display: flex;
   justify-content: space-around;
   padding-left: 21px;
 }
-.formulario{
+.acoes{
+  width: 100%;
+}
+.div_voltar{
+  margin-left: 10px;
+}
+.formulario {
   width: 1200px;
 }
-
+.error-message {
+  color: red;
+  padding-left: 90px;
+}

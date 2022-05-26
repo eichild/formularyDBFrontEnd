@@ -65,8 +65,8 @@ function Edit() {
           </div>
 
           <div className="botoes">
-            <button type='submit'>Alterar</button>
-            < Link to="/consulta"><button>Voltar</button></Link>
+            <button type='submit' className='button'>Alterar</button>
+            < Link to="/consulta"><button className='button'>Voltar</button></Link>
           </div>
         </form>
       </main>
