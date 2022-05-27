@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios, { Axios } from 'axios'
 import { Link } from 'react-router-dom';
-import {Alert} from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 
 const validationPost = yup.object().shape({
@@ -22,6 +22,15 @@ function App() {
     resolver: yupResolver(validationPost)
   })
 
+  const [show, setShow] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const handleClose = () => ([
+    setShow(false),
+    setShowError(false)
+  ])
+  const handleShow = () => setShow(true);
+  const handleShowError = () => setShowError(true);
+  
   const initialValues = {
     servidor: "",
     usuario: "",
@@ -42,22 +51,49 @@ function App() {
     // e.preventDefault();
     axios.post("http://localhost:8080/api/banco-de-dados", banco)
       .then(response => {
-          reset({
-            servidor: "",
-            tipo_banco: "",
-            usuario: "",
-            senha: ""
-          })
-        
+        reset({
+          servidor: "",
+          tipo_banco: "",
+          usuario: "",
+          senha: ""
+        })
+        handleShow()
         console.log(response)
       })
       .catch(error => console.log("Não foi possível cadastrar credenciais de banco de dados: " + error))
+      handleShowError();
   }
 
   return (
     <div>
       <main>
         <div className='formulario'>
+          <div className='mensagem'>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Sucesso!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Informações cadastradas com sucesso!</Modal.Body>
+              <Modal.Footer>
+                <button className='buttonContinuar' onClick={handleClose}>
+                  Continuar
+                </button>
+              </Modal.Footer>
+            </Modal>
+
+            <Modal show={showError} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Falha!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Não foi possível cadastrar informações fornecidas. Por favor verificar campos!</Modal.Body>
+              <Modal.Footer>
+                <button className='buttonDeletar' onClick={handleClose}>
+                  Voltar
+                </button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+          
           <form onSubmit={handleSubmit(onSubmit)} action="/form" method="post">
             <div>
               <label>Servidor:</label>
