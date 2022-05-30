@@ -24,13 +24,14 @@ function App() {
 
   const [show, setShow] = useState(false);
   const [showError, setShowError] = useState(false);
-  const handleClose = () => ([
-    setShow(false),
-    setShowError(false)
-  ])
+  
+  const handleClose = () => setShow(false);
+  const handleCloseError = () => setShowError(false);
+
   const handleShow = () => setShow(true);
   const handleShowError = () => setShowError(true);
-  
+
+
   const initialValues = {
     servidor: "",
     usuario: "",
@@ -47,8 +48,7 @@ function App() {
     console.log(banco)
   }
 
-  function onSubmit(e) {
-    // e.preventDefault();
+  function onSubmit() {
     axios.post("http://localhost:8080/api/banco-de-dados", banco)
       .then(response => {
         reset({
@@ -60,8 +60,9 @@ function App() {
         handleShow()
         console.log(response)
       })
-      .catch(error => console.log("Não foi possível cadastrar credenciais de banco de dados: " + error))
-      handleShowError();
+      .catch(() => {
+        handleShowError()
+      })
   }
 
   return (
@@ -81,19 +82,19 @@ function App() {
               </Modal.Footer>
             </Modal>
 
-            <Modal show={showError} onHide={handleClose}>
+            <Modal show={showError} onHide={handleCloseError}>
               <Modal.Header closeButton>
                 <Modal.Title>Falha!</Modal.Title>
               </Modal.Header>
               <Modal.Body>Não foi possível cadastrar informações fornecidas. Por favor verificar campos!</Modal.Body>
               <Modal.Footer>
-                <button className='buttonDeletar' onClick={handleClose}>
+                <button className='buttonDeletar' onClick={handleCloseError}>
                   Voltar
                 </button>
               </Modal.Footer>
             </Modal>
           </div>
-          
+
           <form onSubmit={handleSubmit(onSubmit)} action="/form" method="post">
             <div>
               <label>Servidor:</label>
